@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Diagnostics;
+using System.Collections.ObjectModel;
 
 namespace WpfApp5
 {
@@ -21,20 +22,19 @@ namespace WpfApp5
   /// </summary>
   public partial class MainWindow : Window
   {
+    private ObservableCollection<DZ> dzz = new ObservableCollection<DZ>();
     public MainWindow()
     {
       InitializeComponent();
-
-      var allProcess =  Process.GetProcesses();
- 
-      int i = 0;
-      foreach (var proc in allProcess)
+      var processes = System.Diagnostics.Process.GetProcesses().OrderBy(process => process.ProcessName).ToList();
+      DZ dz = new DZ();
+      foreach (var process in processes)
       {
-        i++;
-        string infoproc = string.Format($"{proc.Id},{proc.StartTime},{proc.MachineName}");
-        datagrid.ItemsSource = infoproc;
+          dz.Name = process.ProcessName;
+          dz.Id = process.Id;
+          dzz.Add(dz);
       }
- 
+    
     }
 
     private void button_Click(object sender, RoutedEventArgs e)

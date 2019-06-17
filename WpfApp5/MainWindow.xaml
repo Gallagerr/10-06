@@ -13,7 +13,13 @@
             <MenuItem Header="Вид"/>
         </Menu>
         <Label Content="Процессы" HorizontalAlignment="Left" Margin="0,18,0,0" VerticalAlignment="Top"/>
-        <DataGrid Name="datagrid" Margin="0,44,0,39"/>
+        <DataGrid Name="datagrid" Margin="0,44,0,39">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Имя процесса" Binding="{Binding Name}" />
+                <DataGridTextColumn Header="ИД процесса" Binding="{Binding Id}" />
+                <DataGridTextColumn Header="Описание" Binding="{Binding Description}" />
+            </DataGrid.Columns>
+        </DataGrid>
         <Button Name="button" Content="Снять задачу" Margin="690,0,0,10" Click="button_Click" Height="20" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="84"/>
         <Expander Header="Меньше" Margin="5,380,687,-61" Height="100" VerticalAlignment="Top">
             <Grid Background="#FFE5E5E5">
